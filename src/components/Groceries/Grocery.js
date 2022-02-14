@@ -1,11 +1,6 @@
 import { Col, Row, ListGroupItem } from "react-bootstrap";
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faCheckCircle,
-  faTrash,
-  faRotate,
-} from "@fortawesome/free-solid-svg-icons";
+import { FaCheckCircle, FaRedoAlt, FaTrash } from "react-icons/fa";
 
 const Item = () => {
   return (
@@ -16,16 +11,16 @@ const Item = () => {
           <Col className="text-center" s={3}>
             <Row>
               <Col>
-                <FontAwesomeIcon icon={faRotate} color="green" />
+                <FaRedoAlt color="green" />
               </Col>
               <Col>
-                <FontAwesomeIcon icon={faCheckCircle} color="green" />
+                <FaCheckCircle color="green" />
               </Col>
               <Col>
-                <FontAwesomeIcon icon={faCheckCircle} />
+                <FaCheckCircle />
               </Col>
               <Col>
-                <FontAwesomeIcon icon={faTrash} color="red" />
+                <FaTrash color="red" />
               </Col>
             </Row>
           </Col>

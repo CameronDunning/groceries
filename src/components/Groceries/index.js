@@ -1,5 +1,5 @@
 import ItemList from "./ItemList";
-import Item from "./Item";
+import Grocery from "./Grocery";
 
 import { Container, Row, Accordion } from "react-bootstrap";
 
@@ -10,7 +10,7 @@ const Groceries = () => {
         <Accordion.Item eventKey="0">
           <Accordion.Header>Groceries</Accordion.Header>
           <Accordion.Body>
-            <Item />
+            <Grocery />
           </Accordion.Body>
         </Accordion.Item>
         <Accordion.Item eventKey="1">

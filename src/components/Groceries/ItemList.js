@@ -1,4 +1,4 @@
-import Item from "./Item";
+import Grocery from "./Grocery";
 
 import { Col, Row, Card, Button } from "react-bootstrap";
 
@@ -20,8 +20,8 @@ const ItemList = ({ title }) => {
           </Row>
         </Col>
       </Row>
-      <Item />
-      <Item />
+      <Grocery />
+      <Grocery />
     </>
   );
 };
