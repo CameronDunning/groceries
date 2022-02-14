@@ -4,6 +4,7 @@ import {
   faCheckCircle,
   faCheck,
   faTrash,
+  faRotate,
 } from "@fortawesome/free-solid-svg-icons";
 
 const Item = () => {
@@ -14,6 +15,9 @@ const Item = () => {
           <Col s={3}>Test</Col>
           <Col className="text-center" s={3}>
             <Row>
+              <Col>
+                <FontAwesomeIcon icon={faRotate} color="green" />
+              </Col>
               <Col>
                 <FontAwesomeIcon icon={faCheckCircle} color="green" />
               </Col>
