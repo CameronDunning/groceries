@@ -21,6 +21,7 @@ const Groceries = () => {
           <Accordion.Header>Checked Items</Accordion.Header>
           <Accordion.Body>
             <ItemList title={"Regular"} />
+            <Row className="mb-3"></Row>
             <ItemList title={"Non-Regular"} />
           </Accordion.Body>
         </Accordion.Item>

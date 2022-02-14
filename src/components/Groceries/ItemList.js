@@ -4,7 +4,7 @@ import Item from "./Item";
 const ItemList = ({ title }) => {
   return (
     <>
-      <Row>
+      <Row className="mb-3">
         <Col sm={12} md={8}>
           <Card.Title>{title}</Card.Title>
         </Col>
@@ -19,9 +19,8 @@ const ItemList = ({ title }) => {
           </Row>
         </Col>
       </Row>
-      <Row>
-        <Item />
-      </Row>
+      <Item />
+      <Item />
     </>
   );
 };
