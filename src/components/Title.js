@@ -1,5 +1,4 @@
-import Navbar from "react-bootstrap/Navbar";
-import Container from "react-bootstrap/Container";
+import { Container, Navbar } from "react-bootstrap";
 
 const Title = () => {
   return (

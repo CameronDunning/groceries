@@ -1,5 +1,6 @@
-import { Card, Button, Accordion, Col, Row } from "react-bootstrap";
 import Item from "./Item";
+
+import { Col, Row, Card, Button } from "react-bootstrap";
 
 const ItemList = ({ title }) => {
   return (

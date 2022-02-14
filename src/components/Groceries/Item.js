@@ -1,8 +1,8 @@
-import { ListGroupItem, Col, Row, Button } from "react-bootstrap";
+import { Col, Row, ListGroupItem } from "react-bootstrap";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faCheckCircle,
-  faCheck,
   faTrash,
   faRotate,
 } from "@fortawesome/free-solid-svg-icons";
