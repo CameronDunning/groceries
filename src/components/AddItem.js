@@ -1,3 +1,8 @@
+import { useState } from "react";
+
+import { set, ref, push } from "firebase/database";
+import { db } from "../firebase/config";
+
 import {
   Container,
   Form,
@@ -7,6 +12,25 @@ import {
 } from "react-bootstrap";
 
 const AddItem = () => {
+  const [newGrocery, setNewGrocery] = useState("");
+
+  const createGrocery = async () => {
+    console.log("New grocery:", newGrocery);
+
+    console.log("db:", db);
+
+    const groceries = ref(db, "/groceries");
+
+    console.log("groceries:", groceries);
+
+    const test = push(groceries, {
+      grocery: newGrocery,
+      regular: false,
+      check1: false,
+      check2: false,
+    });
+  };
+
   return (
     <Container>
       <Form>
@@ -15,8 +39,11 @@ const AddItem = () => {
             placeholder="Add Item"
             aria-label="Add Item"
             aria-describedby="basic-addon2"
+            onChange={(event) => {
+              setNewGrocery(event.target.value);
+            }}
           />
-          <Button variant="primary" id="button-addon2">
+          <Button variant="primary" onClick={createGrocery}>
             Add Item
           </Button>
         </InputGroup>
