@@ -2,7 +2,7 @@ import Grocery from "./Grocery";
 
 import { Col, Row, Card, Button } from "react-bootstrap";
 
-const ItemList = ({ title }) => {
+const GroceryList = ({ title, groceries }) => {
   return (
     <>
       <Row className="mb-3">
@@ -20,10 +20,12 @@ const ItemList = ({ title }) => {
           </Row>
         </Col>
       </Row>
-      <Grocery />
-      <Grocery />
+      {groceries &&
+        groceries.map((grocery) => {
+          return <Grocery grocery={grocery} key={grocery.id} />;
+        })}
     </>
   );
 };
 
-export default ItemList;
+export default GroceryList;

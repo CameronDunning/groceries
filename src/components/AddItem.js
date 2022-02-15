@@ -15,15 +15,8 @@ const AddItem = () => {
   const [newGrocery, setNewGrocery] = useState("");
 
   const createGrocery = async () => {
-    console.log("New grocery:", newGrocery);
-
-    console.log("db:", db);
-
     const groceries = ref(db, "/groceries");
-
-    console.log("groceries:", groceries);
-
-    const test = push(groceries, {
+    push(groceries, {
       grocery: newGrocery,
       regular: false,
       check1: false,
