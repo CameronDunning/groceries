@@ -4,7 +4,6 @@ import Grocery from "./Grocery";
 import { Container, Row, Accordion } from "react-bootstrap";
 
 const Groceries = ({ groceries }) => {
-  console.log(groceries);
   let unchecked = [],
     regular = [],
     nonRegular = [];
@@ -13,7 +12,6 @@ const Groceries = ({ groceries }) => {
       regular = [],
       nonRegular = [];
     groceries.forEach((grocery) => {
-      console.log(grocery);
       if (grocery.check2) {
         if (grocery.regular) {
           regular.push(grocery);

@@ -11,8 +11,8 @@ function App() {
   const [groceries, setGroceries] = useState([]);
 
   const getGroceries = () => {
-    const groceriesCollectionRef = ref(db, "/groceries");
-    onValue(groceriesCollectionRef, (snapshot) => {
+    const groceriesRef = ref(db, "/groceries");
+    onValue(groceriesRef, (snapshot) => {
       const groceriesSnapshot = snapshot.exportVal();
       const groceriesArray = Object.keys(groceriesSnapshot).map((id) => {
         return { ...groceriesSnapshot[id], id: id };
