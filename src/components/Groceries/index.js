@@ -44,11 +44,7 @@ const Groceries = ({ groceries }) => {
           <Accordion.Body>
             <GroceryList title={"Regular"} groceries={regular} />
             <Row className="mb-3"></Row>
-            <GroceryList
-              title={"Non-Regular"}
-              groceries={nonRegular}
-              key="nonRegular"
-            />
+            <GroceryList title={"Non-Regular"} groceries={nonRegular} />
           </Accordion.Body>
         </Accordion.Item>
       </Accordion>

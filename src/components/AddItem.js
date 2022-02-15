@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import { set, ref, push } from "firebase/database";
+import { ref, push } from "firebase/database";
 import { db } from "../firebase/config";
 
 import {
