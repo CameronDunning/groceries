@@ -1,8 +1,26 @@
+import { ref, set, remove } from "firebase/database";
+
 import Grocery from "./Grocery";
 
 import { Col, Row, Card, Button } from "react-bootstrap";
 
+import { db } from "../../firebase/config";
+
 const GroceryList = ({ title, groceries }) => {
+  const uncheck = () => {
+    groceries.forEach((grocery) => {
+      const groceriesRef = ref(db, "/groceries/" + grocery.id);
+      set(groceriesRef, { ...grocery, check2: false });
+    });
+  };
+
+  const clear = () => {
+    groceries.forEach((grocery) => {
+      const groceriesRef = ref(db, "/groceries/" + grocery.id);
+      remove(groceriesRef);
+    });
+  };
+
   return (
     <>
       <Row className="mb-3">
@@ -12,10 +30,23 @@ const GroceryList = ({ title, groceries }) => {
         <Col sm={12} md={4}>
           <Row>
             <Col className="text-center">
-              <Button>Uncheck</Button>
+              <Button
+                onClick={() => {
+                  uncheck();
+                }}
+              >
+                Uncheck
+              </Button>
             </Col>
             <Col className="text-center">
-              <Button variant="danger">Clear</Button>
+              <Button
+                variant="danger"
+                onClick={() => {
+                  clear();
+                }}
+              >
+                Clear
+              </Button>
             </Col>
           </Row>
         </Col>

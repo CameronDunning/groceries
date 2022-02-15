@@ -1,4 +1,4 @@
-import { set, ref } from "firebase/database";
+import { ref, set, remove } from "firebase/database";
 
 import { Col, Row, ListGroupItem } from "react-bootstrap";
 import { FaCheckCircle, FaRedoAlt, FaTrash } from "react-icons/fa";
@@ -6,19 +6,24 @@ import { FaCheckCircle, FaRedoAlt, FaTrash } from "react-icons/fa";
 import { db } from "../../firebase/config";
 
 const Grocery = ({ grocery }) => {
-  const regular = (grocery) => {
+  const regular = () => {
     const groceriesRef = ref(db, "/groceries/" + grocery.id);
     set(groceriesRef, { ...grocery, regular: !grocery.regular });
   };
 
-  const check1 = (grocery) => {
+  const check1 = () => {
     const groceriesRef = ref(db, "/groceries/" + grocery.id);
     set(groceriesRef, { ...grocery, check1: !grocery.check1 });
   };
 
-  const check2 = (grocery) => {
+  const check2 = () => {
     const groceriesRef = ref(db, "/groceries/" + grocery.id);
     set(groceriesRef, { ...grocery, check2: !grocery.check2 });
+  };
+
+  const deleteGrocery = () => {
+    const groceriesRef = ref(db, "/groceries/" + grocery.id);
+    remove(groceriesRef);
   };
 
   return (
@@ -32,7 +37,7 @@ const Grocery = ({ grocery }) => {
                 <FaRedoAlt
                   color={grocery.regular ? "green" : ""}
                   onClick={() => {
-                    regular(grocery);
+                    regular();
                   }}
                 />
               </Col>
@@ -41,7 +46,7 @@ const Grocery = ({ grocery }) => {
                   color={grocery.check1 ? "green" : ""}
                   key="check1"
                   onClick={() => {
-                    check1(grocery);
+                    check1();
                   }}
                 />
               </Col>
@@ -50,12 +55,17 @@ const Grocery = ({ grocery }) => {
                   color={grocery.check2 ? "green" : ""}
                   key="check2"
                   onClick={() => {
-                    check2(grocery);
+                    check2();
                   }}
                 />
               </Col>
               <Col>
-                <FaTrash color="red" />
+                <FaTrash
+                  color="red"
+                  onClick={() => {
+                    deleteGrocery();
+                  }}
+                />
               </Col>
             </Row>
           </Col>

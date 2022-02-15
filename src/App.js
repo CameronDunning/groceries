@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
-import { set, ref, push, onValue, get } from "firebase/database";
+import { useState } from "react";
+import { ref, onValue } from "firebase/database";
 
 import Title from "./components/Title";
 import AddItem from "./components/AddItem";
@@ -24,8 +24,6 @@ function App() {
   };
 
   getGroceries();
-
-  // console.log(groceries);
 
   return (
     <div className="App">
