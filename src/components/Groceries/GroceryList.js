@@ -6,6 +6,9 @@ import { Col, Row, Card, Button } from "react-bootstrap";
 
 import { db } from "../../firebase/config";
 
+// The container for the grocery list items.
+// Includes options to uncheck (move items back to main section)
+//  or clear (delete) items
 const GroceryList = ({ title, groceries }) => {
   const uncheck = () => {
     groceries.forEach((grocery) => {

@@ -11,14 +11,16 @@ import {
   InputGroup,
 } from "react-bootstrap";
 
+// Simple form to add an item
 const AddItem = () => {
   const [newGrocery, setNewGrocery] = useState("");
 
-  const createGrocery = async (event) => {
+  // Add a new grocery item to firebase. By default all options are unchecked.
+  const createGrocery = (event) => {
     event.preventDefault();
     if (newGrocery) {
-      const groceries = ref(db, "/groceries");
-      push(groceries, {
+      const groceriesRef = ref(db, "/groceries");
+      push(groceriesRef, {
         grocery: newGrocery,
         regular: false,
         check1: false,

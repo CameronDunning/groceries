@@ -3,10 +3,13 @@ import Grocery from "./Grocery";
 
 import { Container, Row, Accordion } from "react-bootstrap";
 
+// The container for the main section containing:
+// The unchcked grocery list (groceries)
+// Checked groceries, which are broken down into:
+// Regular groceries and nonRegular groceries
+// groupGroceries splits these up from the list of all groceries
 const Groceries = ({ groceries }) => {
-  let unchecked = [],
-    regular = [],
-    nonRegular = [];
+  // Group groceries based on criteria above
   const groupGroceries = (groceries) => {
     let unchecked = [],
       regular = [],
@@ -25,7 +28,7 @@ const Groceries = ({ groceries }) => {
     return [unchecked, regular, nonRegular];
   };
 
-  [unchecked, regular, nonRegular] = groupGroceries(groceries);
+  let [unchecked, regular, nonRegular] = groupGroceries(groceries);
 
   return (
     <Container>

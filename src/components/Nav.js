@@ -1,6 +1,7 @@
 import { Container, Navbar } from "react-bootstrap";
 
-const Title = () => {
+// Simple Navbar header
+const Nav = () => {
   return (
     <Navbar className="mb-3" bg="dark" variant="dark">
       <Container>
@@ -19,4 +20,4 @@ const Title = () => {
   );
 };
 
-export default Title;
+export default Nav;

@@ -1,7 +1,7 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { ref, onValue } from "firebase/database";
 
-import Title from "./components/Title";
+import Nav from "./components/Nav";
 import AddItem from "./components/AddItem";
 import Groceries from "./components/Groceries/index";
 
@@ -10,24 +10,24 @@ import { db } from "./firebase/config";
 function App() {
   const [groceries, setGroceries] = useState([]);
 
-  const getGroceries = () => {
+  // Get the groceries from firebase
+  useEffect(() => {
     const groceriesRef = ref(db, "/groceries");
     onValue(groceriesRef, (snapshot) => {
-      const groceriesSnapshot = snapshot.exportVal();
-      const groceriesArray = Object.keys(groceriesSnapshot).map((id) => {
-        return { ...groceriesSnapshot[id], id: id };
-      });
-      if (!(JSON.stringify(groceriesArray) === JSON.stringify(groceries))) {
+      const groceriesSnapshot = snapshot.val();
+      setGroceries([]);
+      if (groceriesSnapshot) {
+        const groceriesArray = Object.keys(groceriesSnapshot).map((id) => {
+          return { ...groceriesSnapshot[id], id: id };
+        });
         setGroceries(groceriesArray);
       }
     });
-  };
-
-  getGroceries();
+  }, []);
 
   return (
     <div className="App">
-      <Title />
+      <Nav />
       <AddItem />
       <Groceries groceries={groceries} />
     </div>
