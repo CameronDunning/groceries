@@ -13,7 +13,7 @@ const GroceryList = ({ title, groceries }) => {
   const uncheck = () => {
     groceries.forEach((grocery) => {
       const groceriesRef = ref(db, "/groceries/" + grocery.id);
-      set(groceriesRef, { ...grocery, check2: false });
+      set(groceriesRef, { ...grocery, check1: false, check2: false });
     });
   };
 
