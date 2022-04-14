@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { ref, onValue } from "firebase/database";
+import { ref, onValue, query, orderByChild } from "firebase/database";
 
 import Nav from "./components/Nav";
 import AddItem from "./components/AddItem";
@@ -12,13 +12,13 @@ function App() {
 
   // Get the groceries from firebase
   useEffect(() => {
-    const groceriesRef = ref(db, "/groceries");
+    const groceriesRef = query(ref(db, "/groceries"), orderByChild("grocery"));
     onValue(groceriesRef, (snapshot) => {
-      const groceriesSnapshot = snapshot.val();
       setGroceries([]);
-      if (groceriesSnapshot) {
-        const groceriesArray = Object.keys(groceriesSnapshot).map((id) => {
-          return { ...groceriesSnapshot[id], id: id };
+      let groceriesArray = [];
+      if (snapshot.size > 0) {
+        snapshot.forEach(function (child) {
+          groceriesArray.push({ ...child.val(), id: child.key });
         });
         setGroceries(groceriesArray);
       }
