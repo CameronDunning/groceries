@@ -1,11 +1,11 @@
 import { Routes, Route } from "react-router-dom";
 
-import Nav from "./components/Nav";
+import { Nav } from "./components/Nav";
 import { Home } from "./pages/Home";
 import { Login } from "./pages/Login";
 import { Register } from "./pages/Register";
 
-function App() {
+export const App = () => {
   return (
     <div className="App">
       <Nav />
@@ -16,6 +16,4 @@ function App() {
       </Routes>
     </div>
   );
-}
-
-export default App;
+};
