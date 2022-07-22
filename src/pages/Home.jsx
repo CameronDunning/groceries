@@ -1,12 +1,20 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { ref, onValue, query, orderByChild } from "firebase/database";
 
 import { db } from "../firebase/config";
 import AddItem from "../components/AddItem";
 import Groceries from "../components/Groceries/index";
 
-export const Home = () => {
+export const Home = ({ user }) => {
   const [groceries, setGroceries] = useState([]);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!user) {
+      navigate("/login");
+    }
+  }, [user]);
 
   // Get the groceries from firebase
   useEffect(() => {
@@ -22,8 +30,6 @@ export const Home = () => {
       }
     });
   }, []);
-
-  console.log("groceries", groceries);
 
   return (
     <>
