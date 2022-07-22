@@ -24,6 +24,16 @@ export const Register = () => {
           </Col>
         </Row>
         <Row className="d-flex justify-content-center">
+          <Col className="col-lg-4">
+            <Form.Group className="mb-3" controlId="formBasicPassword">
+              <Form.Control
+                type="confirmPassword"
+                placeholder="Confirm Password"
+              />
+            </Form.Group>
+          </Col>
+        </Row>
+        <Row className="d-flex justify-content-center">
           <Col className="d-grid col-lg-4">
             <Button variant="primary mb-3" type="submit">
               Submit
