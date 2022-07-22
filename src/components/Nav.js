@@ -5,7 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { auth } from "../firebase/config";
 
 // Simple Navbar header
-export const Nav = () => {
+export const Nav = ({ user }) => {
   const navigate = useNavigate();
 
   const handleSignOut = () => {
@@ -30,13 +30,17 @@ export const Nav = () => {
             </Navbar.Brand>
           </Link>
         </Col>{" "}
-        <Link to="/login" style={styles.link}>
-          <Navbar.Brand>Login</Navbar.Brand>
-        </Link>
-        <Link to="/register" style={styles.link}>
-          <Navbar.Brand>Register</Navbar.Brand>
-        </Link>
-        <Button onClick={handleSignOut}>Sign Out</Button>
+        {!user && (
+          <Link to="/login" style={styles.link}>
+            <Navbar.Brand>Login</Navbar.Brand>
+          </Link>
+        )}
+        {!user && (
+          <Link to="/register" style={styles.link}>
+            <Navbar.Brand>Register</Navbar.Brand>
+          </Link>
+        )}
+        {user && <Button onClick={handleSignOut}>Sign Out</Button>}
       </Container>
     </Navbar>
   );
