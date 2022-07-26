@@ -9,17 +9,17 @@ import { db } from "../../firebase/config";
 // The container for the grocery list items.
 // Includes options to uncheck (move items back to main section)
 //  or clear (delete) items
-const GroceryList = ({ title, groceries }) => {
+const GroceryList = ({ user, title, groceries }) => {
   const uncheck = () => {
     groceries.forEach((grocery) => {
-      const groceriesRef = ref(db, "/groceries/" + grocery.id);
+      const groceriesRef = ref(db, `/groceries/${user.uid}/${grocery.id}`);
       set(groceriesRef, { ...grocery, check1: false, check2: false });
     });
   };
 
   const clear = () => {
     groceries.forEach((grocery) => {
-      const groceriesRef = ref(db, "/groceries/" + grocery.id);
+      const groceriesRef = ref(db, `/groceries/${user.uid}/${grocery.id}`);
       remove(groceriesRef);
     });
   };
@@ -54,9 +54,10 @@ const GroceryList = ({ title, groceries }) => {
           </Row>
         </Col>
       </Row>
-      {groceries &&
+      {user &&
+        groceries &&
         groceries.map((grocery) => {
-          return <Grocery grocery={grocery} key={grocery.id} />;
+          return <Grocery user={user} grocery={grocery} key={grocery.id} />;
         })}
     </>
   );

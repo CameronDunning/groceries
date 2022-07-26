@@ -25,7 +25,6 @@ export const Register = () => {
       .then((res) => {
         // redirect to home page
         navigate("/");
-        console.log(res);
       })
       .catch((err) => {
         setError(err.message);

@@ -37,7 +37,7 @@ export const Home = ({ user }) => {
   return (
     <>
       <AddItem user={user} />
-      <Groceries groceries={groceries} />
+      <Groceries user={user} groceries={groceries} />
     </>
   );
 };
