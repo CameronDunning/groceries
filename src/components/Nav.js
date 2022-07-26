@@ -1,23 +1,53 @@
-import { Container, Navbar } from "react-bootstrap";
+import { signOut } from "firebase/auth";
+import { Col, Container, Navbar, Button } from "react-bootstrap";
+import { Link, useNavigate } from "react-router-dom";
+
+import { auth } from "../firebase/config";
 
 // Simple Navbar header
-const Nav = () => {
+export const Nav = ({ user }) => {
+  const navigate = useNavigate();
+
+  const handleSignOut = () => {
+    signOut(auth);
+    navigate("/login");
+  };
+
   return (
     <Navbar className="mb-3" bg="dark" variant="dark">
-      <Container>
-        <Navbar.Brand>
-          <img
-            alt="groceries"
-            src="/groceries.svg"
-            width="30"
-            height="30"
-            className="d-inline-block align-top filter-blue"
-          />{" "}
-          Groceries
-        </Navbar.Brand>
+      <Container className="justify-content-between">
+        <Col>
+          <Link to="/" style={styles.link}>
+            <Navbar.Brand>
+              <img
+                alt="groceries"
+                src="/groceries.svg"
+                width="30"
+                height="30"
+                className="d-inline-block align-top filter-blue"
+              />{" "}
+              Groceries
+            </Navbar.Brand>
+          </Link>
+        </Col>{" "}
+        {!user && (
+          <Link to="/login" style={styles.link}>
+            <Navbar.Brand>Login</Navbar.Brand>
+          </Link>
+        )}
+        {!user && (
+          <Link to="/register" style={styles.link}>
+            <Navbar.Brand>Register</Navbar.Brand>
+          </Link>
+        )}
+        {user && <Button onClick={handleSignOut}>Sign Out</Button>}
       </Container>
     </Navbar>
   );
 };
 
-export default Nav;
+const styles = {
+  link: {
+    textDecoration: "none",
+  },
+};

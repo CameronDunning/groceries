@@ -1,37 +1,33 @@
 import { useState, useEffect } from "react";
-import { ref, onValue, query, orderByChild } from "firebase/database";
+import { Routes, Route } from "react-router-dom";
+import { onAuthStateChanged } from "firebase/auth";
 
-import Nav from "./components/Nav";
-import AddItem from "./components/AddItem";
-import Groceries from "./components/Groceries/index";
+import { auth } from "./firebase/config";
+import { Nav } from "./components/Nav";
+import { Home } from "./pages/Home";
+import { Login } from "./pages/Login";
+import { Register } from "./pages/Register";
 
-import { db } from "./firebase/config";
+export const App = () => {
+  const [user, setUser] = useState({});
 
-function App() {
-  const [groceries, setGroceries] = useState([]);
-
-  // Get the groceries from firebase
   useEffect(() => {
-    const groceriesRef = query(ref(db, "/groceries"), orderByChild("grocery"));
-    onValue(groceriesRef, (snapshot) => {
-      setGroceries([]);
-      let groceriesArray = [];
-      if (snapshot.size > 0) {
-        snapshot.forEach(function (child) {
-          groceriesArray.push({ ...child.val(), id: child.key });
-        });
-        setGroceries(groceriesArray);
-      }
+    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+      setUser(currentUser);
     });
+    return () => {
+      unsubscribe();
+    };
   }, []);
 
   return (
     <div className="App">
-      <Nav />
-      <AddItem />
-      <Groceries groceries={groceries} />
+      <Nav user={user} />
+      <Routes>
+        <Route path="/" element={<Home user={user} />} />
+        <Route path="/login" element={<Login user={user} />} />
+        <Route path="/register" element={<Register user={user} />} />
+      </Routes>
     </div>
   );
-}
-
-export default App;
+};

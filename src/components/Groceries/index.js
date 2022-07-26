@@ -8,7 +8,7 @@ import { Container, Row, Accordion } from "react-bootstrap";
 // Checked groceries, which are broken down into:
 // Regular groceries and nonRegular groceries
 // groupGroceries splits these up from the list of all groceries
-const Groceries = ({ groceries }) => {
+const Groceries = ({ user, groceries }) => {
   // Group groceries based on criteria above
   const groupGroceries = (groceries) => {
     let unchecked = [],
@@ -38,16 +38,22 @@ const Groceries = ({ groceries }) => {
           <Accordion.Body>
             {unchecked &&
               unchecked.map((grocery) => {
-                return <Grocery grocery={grocery} key={grocery.id} />;
+                return (
+                  <Grocery user={user} grocery={grocery} key={grocery.id} />
+                );
               })}
           </Accordion.Body>
         </Accordion.Item>
         <Accordion.Item eventKey="1">
           <Accordion.Header>Checked Items</Accordion.Header>
           <Accordion.Body>
-            <GroceryList title={"Regular"} groceries={regular} />
+            <GroceryList user={user} title={"Regular"} groceries={regular} />
             <Row className="mb-3"></Row>
-            <GroceryList title={"Non-Regular"} groceries={nonRegular} />
+            <GroceryList
+              user={user}
+              title={"Non-Regular"}
+              groceries={nonRegular}
+            />
           </Accordion.Body>
         </Accordion.Item>
       </Accordion>
