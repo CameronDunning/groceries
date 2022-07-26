@@ -18,7 +18,10 @@ export const Home = ({ user }) => {
 
   // Get the groceries from firebase
   useEffect(() => {
-    const groceriesRef = query(ref(db, "/groceries"), orderByChild("grocery"));
+    const groceriesRef = query(
+      ref(db, `/groceries/${user.uid}`),
+      orderByChild("grocery")
+    );
     onValue(groceriesRef, (snapshot) => {
       setGroceries([]);
       let groceriesArray = [];
@@ -29,11 +32,11 @@ export const Home = ({ user }) => {
         setGroceries(groceriesArray);
       }
     });
-  }, []);
+  }, [user]);
 
   return (
     <>
-      <AddItem />
+      <AddItem user={user} />
       <Groceries groceries={groceries} />
     </>
   );
