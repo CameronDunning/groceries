@@ -96,11 +96,11 @@ export const Register = () => {
       </Form>
       <Row>
         <div className="text-center">
-          <p>or sign up with:</p>
+          {/* <p>or sign up with:</p>
 
           <Button type="button" className="btn btn-link rounded-circle mb-3">
             <FaGoogle className="light mb-1" style={{ color: "white" }} />
-          </Button>
+          </Button> */}
           <p>
             Already a member?&nbsp;
             <Link to={"/login"}>Login</Link>

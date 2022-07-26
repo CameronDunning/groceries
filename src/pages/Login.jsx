@@ -78,11 +78,11 @@ export const Login = () => {
       </Form>
       <Row>
         <div className="text-center">
-          <p>or sign in with:</p>
+          {/* <p>or sign in with:</p>
 
           <Button type="button" className="btn btn-link rounded-circle mb-3">
             <FaGoogle className="light mb-1" style={{ color: "white" }} />
-          </Button>
+          </Button> */}
 
           <p>
             Not a member?&nbsp;
