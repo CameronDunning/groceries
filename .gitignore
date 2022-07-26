@@ -12,7 +12,7 @@
 /build
 
 # cache
-.firebase/*
+/.firebase/*
 firebase-debug.log
 
 # misc

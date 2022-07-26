@@ -18,20 +18,22 @@ export const Home = ({ user }) => {
 
   // Get the groceries from firebase
   useEffect(() => {
-    const groceriesRef = query(
-      ref(db, `/groceries/${user.uid}`),
-      orderByChild("grocery")
-    );
-    onValue(groceriesRef, (snapshot) => {
-      setGroceries([]);
-      let groceriesArray = [];
-      if (snapshot.size > 0) {
-        snapshot.forEach(function (child) {
-          groceriesArray.push({ ...child.val(), id: child.key });
-        });
-        setGroceries(groceriesArray);
-      }
-    });
+    if (user) {
+      const groceriesRef = query(
+        ref(db, `/groceries/${user.uid}`),
+        orderByChild("grocery")
+      );
+      onValue(groceriesRef, (snapshot) => {
+        setGroceries([]);
+        let groceriesArray = [];
+        if (snapshot.size > 0) {
+          snapshot.forEach(function (child) {
+            groceriesArray.push({ ...child.val(), id: child.key });
+          });
+          setGroceries(groceriesArray);
+        }
+      });
+    }
   }, [user]);
 
   return (
