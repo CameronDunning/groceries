@@ -14,7 +14,7 @@ export const Home = ({ user }) => {
     if (!user) {
       navigate("/login");
     }
-  }, [user]);
+  }, [user, navigate]);
 
   // Get the groceries from firebase
   useEffect(() => {
@@ -34,7 +34,7 @@ export const Home = ({ user }) => {
         }
       });
     }
-  }, [user, navigate]);
+  }, [user]);
 
   return (
     <>
