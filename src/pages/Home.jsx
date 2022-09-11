@@ -34,7 +34,7 @@ export const Home = ({ user }) => {
         }
       });
     }
-  }, [user]);
+  }, [user, navigate]);
 
   return (
     <>
