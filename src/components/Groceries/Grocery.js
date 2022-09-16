@@ -6,7 +6,7 @@ import { FaCheckCircle, FaRedoAlt, FaTrash } from "react-icons/fa";
 import { db } from "../../firebase/config";
 
 // The actual item in the grocery list
-const Grocery = ({ user, grocery }) => {
+const Grocery = ({ user, grocery, index }) => {
   // Option to check whether an item is a regular item or not.
   const regular = () => {
     const groceriesRef = ref(db, `/groceries/${user.uid}/${grocery.id}`);
@@ -33,7 +33,7 @@ const Grocery = ({ user, grocery }) => {
 
   return (
     <Row>
-      <ListGroupItem>
+      <ListGroupItem style={{ background: index % 2 === 1 ? "#F6F6F6" : "" }}>
         <Row s={6}>
           <Col s={3}>{grocery.grocery}</Col>
           <Col className="text-center" s={3}>
