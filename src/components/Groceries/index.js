@@ -37,9 +37,14 @@ const Groceries = ({ user, groceries }) => {
           <Accordion.Header>Groceries</Accordion.Header>
           <Accordion.Body>
             {unchecked &&
-              unchecked.map((grocery) => {
+              unchecked.map((grocery, i) => {
                 return (
-                  <Grocery user={user} grocery={grocery} key={grocery.id} />
+                  <Grocery
+                    user={user}
+                    grocery={grocery}
+                    key={grocery.id}
+                    index={i}
+                  />
                 );
               })}
           </Accordion.Body>

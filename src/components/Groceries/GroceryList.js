@@ -56,8 +56,10 @@ const GroceryList = ({ user, title, groceries }) => {
       </Row>
       {user &&
         groceries &&
-        groceries.map((grocery) => {
-          return <Grocery user={user} grocery={grocery} key={grocery.id} />;
+        groceries.map((grocery, i) => {
+          return (
+            <Grocery user={user} grocery={grocery} key={grocery.id} index={i} />
+          );
         })}
     </>
   );
