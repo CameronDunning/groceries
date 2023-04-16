@@ -1,22 +1,22 @@
-name: Deploy Website
+name: Deploy Dev Website
 
 # Controls when the workflow will run
 on:
   # Triggers the workflow on push or pull request events but only for the main branch
   push:
-    branches: [main]
+    branches: [dev]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
 env:
-  REACT_APP_API_KEY: ${{ secrets.REACT_APP_API_KEY }}
-  REACT_APP_AUTH_DOMAIN: ${{ secrets.REACT_APP_AUTH_DOMAIN }}
-  REACT_APP_DATABASE_URL: ${{ secrets.REACT_APP_DATABASE_URL }}
-  REACT_APP_PROJECT_ID: ${{ secrets.REACT_APP_PROJECT_ID }}
-  REACT_APP_STORAGE_BUCKET: ${{ secrets.REACT_APP_STORAGE_BUCKET }}
-  REACT_APP_MESSAGING_SENDER_ID: ${{ secrets.REACT_APP_MESSAGING_SENDER_ID }}
-  REACT_APP_APP_ID: ${{ secrets.REACT_APP_APP_ID }}
+  REACT_APP_API_KEY: ${{ secrets.REACT_APP_API_KEY_DEV }}
+  REACT_APP_AUTH_DOMAIN: ${{ secrets.REACT_APP_AUTH_DOMAIN_DEV }}
+  REACT_APP_DATABASE_URL: ${{ secrets.REACT_APP_DATABASE_URL_DEV }}
+  REACT_APP_PROJECT_ID: ${{ secrets.REACT_APP_PROJECT_ID_DEV }}
+  REACT_APP_STORAGE_BUCKET: ${{ secrets.REACT_APP_STORAGE_BUCKET_DEV }}
+  REACT_APP_MESSAGING_SENDER_ID: ${{ secrets.REACT_APP_MESSAGING_SENDER_ID_DEV }}
+  REACT_APP_APP_ID: ${{ secrets.REACT_APP_APP_ID_DEV }}
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -41,6 +41,6 @@ jobs:
       - name: Build Application
         run: npm run build
       - name: Deploy to S3
-        run: aws s3 sync --delete ./build s3://${{ secrets.BUCKET_NAME }}
+        run: aws s3 sync --delete ./build s3://${{ secrets.BUCKET_NAME_DEV }}
       - name: Create Cloudfront Invalidation
-        run: aws cloudfront create-invalidation --distribution-id ${{ secrets.DISTRIBUTION_ID }} --paths "/*"
+        run: aws cloudfront create-invalidation --distribution-id ${{ secrets.DISTRIBUTION_ID_DEV }} --paths "/*"
