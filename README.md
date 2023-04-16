@@ -16,8 +16,8 @@ See more about it on my website: https://camthompson.ca/professional
 
 Download the repository and run:
 
-    ```npm install```
-    ```npm start```
+    npm install
+    npm start
 
 ## Tech Stack
 
