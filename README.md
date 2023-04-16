@@ -10,7 +10,7 @@ Additionally, there is a handy button that can move all checked items back to th
 
 See more about it on my website: https://camthompson.ca/professional
 
-![Screenshot of the Grocery List App](http://full/path/to/img.jpg "Grocery List App")
+![Screenshot of the Grocery List App](https://camthompson.ca/grocery-list.png "Grocery List App")
 
 ## Installation
 
