@@ -44,6 +44,7 @@ const Groceries = ({ user, groceries }) => {
                     grocery={grocery}
                     key={grocery.id}
                     index={i}
+                    dataTest="unchecked"
                   />
                 );
               })}
