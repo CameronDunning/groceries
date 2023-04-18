@@ -1,7 +1,7 @@
 import { render, fireEvent, cleanup } from "@testing-library/react";
 import "@testing-library/jest-dom/extend-expect";
 import { assertFails } from "@firebase/rules-unit-testing";
-import { set, ref } from "firebase/database";
+import { set, ref, remove } from "firebase/database";
 
 import { db } from "../../../firebase/config";
 import Grocery from "../Grocery";
@@ -82,4 +82,45 @@ test('Clicking regular button calls "regular" function', async () => {
       regular: true,
     })
   );
+});
+
+test('Clicking check1 button calls "check1" function', async () => {
+  jest.spyOn(console, "warn").mockImplementation(() => {});
+  const { getByTestId } = render(
+    <Grocery grocery={grocery} user={user} index={index} />
+  );
+
+  fireEvent.click(getByTestId("check1"));
+
+  await assertFails(
+    set(ref(db, `/groceries/${user.uid}/${grocery.id}`), {
+      check1: true,
+    })
+  );
+});
+
+test('Clicking check2 button calls "check2" function', async () => {
+  jest.spyOn(console, "warn").mockImplementation(() => {});
+  const { getByTestId } = render(
+    <Grocery grocery={grocery} user={user} index={index} />
+  );
+
+  fireEvent.click(getByTestId("check2"));
+
+  await assertFails(
+    set(ref(db, `/groceries/${user.uid}/${grocery.id}`), {
+      check2: true,
+    })
+  );
+});
+
+test('Clicking delete button calls "deleteGrocery" function', async () => {
+  jest.spyOn(console, "warn").mockImplementation(() => {});
+  const { getByTestId } = render(
+    <Grocery grocery={grocery} user={user} index={index} />
+  );
+
+  fireEvent.click(getByTestId("delete"));
+
+  await assertFails(remove(ref(db, `/groceries/${user.uid}/${grocery.id}`)));
 });
