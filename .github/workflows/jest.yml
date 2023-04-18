@@ -1,0 +1,32 @@
+name: Jest Tests
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on pull requests to dev or main
+  pull_request:
+    branches: [main, dev]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+env:
+  REACT_APP_API_KEY: ${{ secrets.REACT_APP_API_KEY }}
+  REACT_APP_AUTH_DOMAIN: ${{ secrets.REACT_APP_AUTH_DOMAIN }}
+  REACT_APP_DATABASE_URL: ${{ secrets.REACT_APP_DATABASE_URL }}
+  REACT_APP_PROJECT_ID: ${{ secrets.REACT_APP_PROJECT_ID }}
+  REACT_APP_STORAGE_BUCKET: ${{ secrets.REACT_APP_STORAGE_BUCKET }}
+  REACT_APP_MESSAGING_SENDER_ID: ${{ secrets.REACT_APP_MESSAGING_SENDER_ID }}
+  REACT_APP_APP_ID: ${{ secrets.REACT_APP_APP_ID }}
+
+jobs:
+  jest:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+      - name: Install Modules
+        run: npm ci
+      - name: Run Jest
+        run: npm run test
