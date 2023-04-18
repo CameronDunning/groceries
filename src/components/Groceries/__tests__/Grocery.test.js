@@ -1,6 +1,9 @@
-import { render, screen, fireEvent } from "@testing-library/react";
+import { render, fireEvent, cleanup } from "@testing-library/react";
 import "@testing-library/jest-dom/extend-expect";
+import { assertFails } from "@firebase/rules-unit-testing";
+import { set, ref } from "firebase/database";
 
+import { db } from "../../../firebase/config";
 import Grocery from "../Grocery";
 
 const grocery = {
@@ -12,6 +15,8 @@ const grocery = {
 };
 const user = { uid: 1 };
 const index = 1;
+
+afterEach(() => cleanup());
 
 test("Renders Grocery component", () => {
   const { container, getByText, getByTestId } = render(
@@ -64,12 +69,17 @@ test("Check2 button is checked", () => {
   expect(getByTestId("check2")).toHaveStyle("color: green");
 });
 
-test.skip('clicking "regular" button calls regular function', () => {
-  const regular = jest.fn();
+test('Clicking regular button calls "regular" function', async () => {
+  jest.spyOn(console, "warn").mockImplementation(() => {});
   const { getByTestId } = render(
-    <Grocery grocery={grocery} user={user} index={index} regular={regular} />
+    <Grocery grocery={grocery} user={user} index={index} />
   );
 
   fireEvent.click(getByTestId("regular"));
-  expect(regular).toHaveBeenCalledTimes(1);
+
+  await assertFails(
+    set(ref(db, `/groceries/${user.uid}/${grocery.id}`), {
+      regular: true,
+    })
+  );
 });
