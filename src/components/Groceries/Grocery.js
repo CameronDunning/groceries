@@ -44,6 +44,7 @@ const Grocery = ({ user, grocery, index }) => {
                   onClick={() => {
                     regular();
                   }}
+                  data-testid="regular"
                 />
               </Col>
               <Col>
@@ -53,6 +54,7 @@ const Grocery = ({ user, grocery, index }) => {
                   onClick={() => {
                     check1();
                   }}
+                  data-testid="check1"
                 />
               </Col>
               <Col>
@@ -62,6 +64,7 @@ const Grocery = ({ user, grocery, index }) => {
                   onClick={() => {
                     check2();
                   }}
+                  data-testid="check2"
                 />
               </Col>
               <Col>
@@ -70,6 +73,7 @@ const Grocery = ({ user, grocery, index }) => {
                   onClick={() => {
                     deleteGrocery();
                   }}
+                  data-testid="delete"
                 />
               </Col>
             </Row>
